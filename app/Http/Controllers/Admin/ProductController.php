@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -38,7 +38,18 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        //dd($request->all());
+        $data = [
+            'name' => $request->name,
+            'price' => $request->price,
+            'image' => $request->image,
+            'in_stock' => $request->in_stock,
+            'weight' => $request->weight,
+            'product_code' => $request->product_code,
+            'description' => $request->description,
+        ];
+        Product::create($data);
+        return to_route('admin.products.index')->with('message', 'add new product');
     }
 
     /**
@@ -49,7 +60,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.product.show', compact('product'));
     }
 
     /**

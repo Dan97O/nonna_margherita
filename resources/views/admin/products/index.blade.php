@@ -4,6 +4,15 @@
 
 @section('content')
 
+    @if (session('message'))
+        <div class="alert alert-primary" role="alert">
+            <strong> {{ session('message') }} </strong>
+        </div>
+    @endif
+
+    <a name="" id="" class="btn btn-primary" href="{{ route('admin.products.create') }}" role="button">New
+        Product</a>
+
     <div class="table-responsive">
         <table class="table table-striped
     table-hover
@@ -33,6 +42,8 @@
                         <td scope="row"> {{ $product->in_stock }} </td>
                         <td scope="row"> {{ $product->weight }} </td>
                         <td scope="row"> {{ $product->product_code }} </td>
+                        <a name="" id="" class="btn btn-primary"
+                            href="{{ route('admin.products.show, $products->id') }}" role="button">Button</a>
                         <td>
                             VIEW | EDIT | DELETE
                         </td>
