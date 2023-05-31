@@ -38,18 +38,18 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //dd($request->all());
+        #dd($request->all());
         $data = [
-            'name' => $request->name,
-            'price' => $request->price,
-            'image' => $request->image,
-            'in_stock' => $request->in_stock,
-            'weight' => $request->weight,
-            'product_code' => $request->product_code,
-            'description' => $request->description,
+            "name" => $request->name,
+            "price" => $request->price,
+            "image" => $request->image,
+            "in_stock" => $request->in_stock,
+            "weight" => $request->weight,
+            "product_code" => $request->product_code,
+            "description" => $request->description,
         ];
         Product::create($data);
-        return to_route('admin.products.index')->with('message', 'add new product');
+        return to_route('admin.products.index')->with('message', 'is add new item');
     }
 
     /**
@@ -60,7 +60,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('admin.product.show', compact('product'));
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -71,7 +71,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('admin.products.edit', compact('product'));
     }
 
     /**
@@ -83,7 +83,18 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        #dd($request->all());
+        $data = [
+            "name" => $request->name,
+            "price" => $request->price,
+            "image" => $request->image,
+            "in_stock" => $request->in_stock,
+            "weight" => $request->weight,
+            "product_code" => $request->product_code,
+            "description" => $request->description,
+        ];
+        $product->update($data);
+        return to_route('admin.products.index')->with('message', 'is upadate');
     }
 
     /**
@@ -94,6 +105,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return to_route('admin.products.index')->with('message', 'is delete');
     }
 }
