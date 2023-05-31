@@ -21,6 +21,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('blog') }}">Blog</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.products.index') }}">Admin</a>
+                    </li>
                 </ul>
             </div>
         </div>
